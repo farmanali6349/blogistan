@@ -1,32 +1,34 @@
 import './App.css'
 import { Outlet } from "react-router-dom"
 import { login, logout } from './store/slices/authSlice'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import { authService } from "./services/authService"
+import { Header } from './components/index';
 
 function App() {
 
   const dispatch = useDispatch();
 
-  useEffect(()=> {
+  useEffect(() => {
     authService.getCurrentUser()
-      .then((userData) => dispatch(login(userData)))
-      .catch((err)=> dispatch(logout()))
-  
+      .then((userData) => {
+        if (userData) {
+          dispatch(login(userData))
+        }
+      })
+      .catch((err) => {
+        console.log("No User Data Found");
+        dispatch(logout())
+      })
   }, [])
+
   return (
     <>
-      <header>Header</header>
+      <Header />
       <main>
         <Outlet />
-
-        <div className="test-elements">
-          <button onClick={() => loginUser()}>Login</button>
-          <button onClick={() => logoutUser()}>Logout</button>
-        </div>
       </main>
-      <footer>Footer</footer>
     </>
   )
 }

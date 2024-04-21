@@ -1,0 +1,19 @@
+.navbar ul{
+    list-style: none;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+}
+
+.navbar ul li {
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.navbar ul li.normal:hover {
+    color: var(--bg-button-hover);
+}
+

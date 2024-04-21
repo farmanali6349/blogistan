@@ -9,21 +9,22 @@ class AuthService {
         this.client
             .setEndpoint(config.url)
             .setProject(config.projectId);
-        
+
         this.account = new Account(this.client);
     }
 
 
-    async signup({email, password, name}) {
+    async signup({ email, password, name }) {
         try {
-            return await this.account.create(ID.unique(), email, password, name)
+            const userAccount = await this.account.create(ID.unique(), email, password, name);
+            return userAccount;
         } catch (error) {
             console.log("AuthService :: signup() :: Error ", error);
             return false;
         }
     }
 
-    async signin({email, password}) {
+    async signin({ email, password }) {
         try {
             return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
@@ -32,7 +33,7 @@ class AuthService {
         }
     }
 
-    async getCurrentUser({email, password}) {
+    async getCurrentUser() {
         try {
             return await this.account.get();
         } catch (error) {
@@ -41,7 +42,7 @@ class AuthService {
         }
     }
 
-    async signout({email, password}) {
+    async signout({ email, password }) {
         try {
             return await this.account.deleteSession();
         } catch (error) {
@@ -55,4 +56,4 @@ class AuthService {
 
 const authService = new AuthService();
 
-export {authService}
+export { authService }

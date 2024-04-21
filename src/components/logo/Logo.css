@@ -1,0 +1,19 @@
+.logo {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.logo img {
+    width: 32px;
+}
+
+.logo h2 {
+    transition: color 0.4s;
+}
+
+.logo:hover h2 {
+    color: var(--bg-button-hover);
+}

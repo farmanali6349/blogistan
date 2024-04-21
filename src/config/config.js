@@ -1,4 +1,4 @@
-export default config = {
+const config = {
     url: String(import.meta.env.VITE_APPWRITE_URL),
     projectId: String(import.meta.env.VITE_APPWRITE_PROJECT_ID),
     databaseId: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
@@ -7,3 +7,5 @@ export default config = {
     commentsCollectionId: String(import.meta.env.VITE_APPWRITE_COMMENTS_COLLECTION_ID),
     categoriesCollectionId: String(import.meta.env.VITE_APPWRITE_CATEGORIES_COLLECTION_ID)
 }
+
+export { config }

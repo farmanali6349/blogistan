@@ -31,6 +31,7 @@ body {
     --bg-button-hover: #a75bff;
     --text-button: #000;
     --stroke-color: #636363;
+    --error-color: #ff5f5f;
 }
 
 
@@ -58,6 +59,79 @@ a {
 
 .page-title {
     text-align: center;
+    padding: 48px 0;
+    margin: 24px 0;
+    width: 100%;
+    background-color: var(--bg-color02);
+}
+
+.page-title h2 {
+    text-transform: uppercase;
     font-size: 32px;
-    margin-top: 24px;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+}
+
+.page-title p {
+    color: var(--text-color02);
+}
+.main-container {
+    width: 100%;
+    max-width: 1240px;
+    padding: 0 0;
+}
+
+.button-primary {
+    background-color: var(--bg-button);
+    padding: 5px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 150px;
+    color: #000;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button-secondary {
+    border: 1px solid #636363;
+    color: var(--text-color02);
+    padding: 5px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 150px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.button-primary:hover {
+    background-color: var(--bg-button-hover);
+}
+
+.button-secondary:hover {
+    color: var(--text-color01);
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+}
+
+form p.bottom {
+    color: var(--text-color02);
+    
+}
+
+form p.bottom a{
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+form p.bottom a:hover{
+    color: var(--bg-button-hover);
 }
