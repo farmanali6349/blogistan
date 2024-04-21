@@ -42,11 +42,29 @@ class AuthService {
         }
     }
 
-    async signout({ email, password }) {
+    async signout(sessionId) {
         try {
-            return await this.account.deleteSession();
+            return await this.account.deleteSession(sessionId);
         } catch (error) {
             console.log("AuthService :: signout() :: Error ", error);
+            return false;
+        }
+    }
+
+    async getCurrentSession(sessionId) {
+        try {
+            return await this.account.getSession(sessionId);
+        } catch (error) {
+            console.log("AuthService :: getCurrentSession() :: Error ", error);
+            return false;
+        }
+    }
+
+    async getSessions() {
+        try {
+            return await this.account.listSessions();
+        } catch (error) {
+            console.log("AuthService :: getCurrentSession() :: Error ", error);
             return false;
         }
     }

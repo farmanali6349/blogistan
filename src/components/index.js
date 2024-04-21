@@ -12,5 +12,6 @@ import PageTitle from "./pageTitle/PageTitle";
 import Home from "./pages/home/Home";
 import Blogs from "./pages/blogs/Blogs";
 import WriteBlog from "./pages/writeBlog/WriteBlog";
+import MyAccount from "./pages/myAccount/MyAccount";
 
-export {Navbar, Signin, Signup, SigninPage, SignupPage, Authlayout, Header, Logo, Container, Input, PageTitle, Home, Blogs, WriteBlog }
+export {Navbar, Signin, Signup, SigninPage, SignupPage, Authlayout, Header, Logo, Container, Input, PageTitle, Home, Blogs, WriteBlog, MyAccount }

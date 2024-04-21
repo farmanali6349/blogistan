@@ -7,7 +7,7 @@ import "./Navbar.css"
 
 function Navbar() {
 
-
+    const userData = useSelector(state => state.authSliceReducer.userData)
     const authStatus = useSelector(state => state.authSliceReducer.status);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -18,16 +18,18 @@ function Navbar() {
     }
 
     const logoutUser = () => {
-        authService.signout()
+        const session = JSON.parse(localStorage.getItem('session'));
+        console.log(session)
+        authService.signout(session.$id)
             .then((value) => {
-                console.log("SignOut Value: ", value)
                 if(value) {
+                    localStorage.clear();
                     dispatch(logout())
                     navigate('/signin')
                 }
             }).catch((err) => {
                 console.log("SignOut error ::  ERROR :: ", err)
-            })
+            });
     }
 
     const navItems = [

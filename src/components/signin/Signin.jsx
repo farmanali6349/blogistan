@@ -12,9 +12,10 @@ function Signin() {
 
     function signinUser(formData) {
         authService.signin({ ...formData })
-            .then((userData) => {
-                if (userData) {
-                    dispatch(login(userData))
+            .then((session) => {
+                if (session) {
+                    dispatch(login(session))
+                    localStorage.setItem('session', JSON.stringify(session))
                 }
             }).catch((err) => console.log("Singin.jsx :: ERROR :: ", err))
     }
