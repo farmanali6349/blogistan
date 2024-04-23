@@ -1,0 +1,55 @@
+.category-input {
+    display: flex;
+    gap: 10px;
+}
+
+.category-input input[type="text"] {
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-family: 'Archivo';
+    background: transparent;
+    color: var(--text-color01);
+    width: fit-content;
+    display: inline-block;
+}
+
+.category-input .category-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    opacity: 0;
+    display: none;
+}
+
+.category-input:hover .category-controls {
+    display: flex;
+    opacity: 1;
+}
+.category-input .category-button {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--bg-button);
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.category-input .category-button.edit:hover {
+    color: var(--bg-button-hover);
+}
+
+.category-input .category-button.delete {
+    color: var(--error-color);
+}
+
+.category-input .category-button.delete:hover {
+    color: red;
+}
+
+.category-input input[type="checkbox"] {
+    width: 18px;
+}

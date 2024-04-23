@@ -14,5 +14,8 @@ import Blogs from "./pages/blogs/Blogs";
 import WriteBlog from "./pages/writeBlog/WriteBlog";
 import MyAccount from "./pages/myAccount/MyAccount";
 import EditProfile from "./pages/editProfile/EditProfile";
+import Categories from "./categories/Categories";
+import BlogForm from "./blogForm/BlogForm";
+import CategoryInput from "./categoryInput/CategoryInput";
 
-export {Navbar, Signin, Signup, SigninPage, SignupPage, Authlayout, Header, Logo, Container, Input, PageTitle, Home, Blogs, WriteBlog, MyAccount, EditProfile }
+export {Navbar, Signin, Signup, SigninPage, SignupPage, Authlayout, Header, Logo, Container, Input, PageTitle, Home, Blogs, WriteBlog, MyAccount, EditProfile, Categories, BlogForm, CategoryInput }

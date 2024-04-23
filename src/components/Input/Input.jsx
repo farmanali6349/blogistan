@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useId } from 'react'
 import "./Input.css"
 function Input({
     label,
@@ -7,11 +7,13 @@ function Input({
     error = "",
     ...props
 }, ref) {
+
+  const id = useId();
   return (
     <div className="input">
-        {label && label ? <label>{label}</label> : null}
+        {label && label ? <label htmlFor={id}>{label}</label> : null}
 
-        <input ref={ref} type={type} className={` ${className}`} {...props} />
+        <input ref={ref} type={type} className={` ${className}`} {...props} id={id}/>
         
         {error && error ? <p className='input-error'>{error}</p> : null}
     </div>

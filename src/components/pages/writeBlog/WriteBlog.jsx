@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, PageTitle } from "../../index"
+import { Container, PageTitle, Categories } from "../../index"
 function WriteBlog() {
   return (
     <>
@@ -7,6 +7,8 @@ function WriteBlog() {
 
       <Container>
         <button className="button-primary">Write Blog</button>
+
+        <Categories />
       </Container>
     </>
   )
