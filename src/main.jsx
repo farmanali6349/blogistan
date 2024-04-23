@@ -5,7 +5,7 @@ import './index.css'
 import { Provider } from "react-redux"
 import store from './store/store.js'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { SigninPage, SignupPage, Authlayout, Home, Blogs, WriteBlog, MyAccount } from "./components/index.js"
+import { SigninPage, SignupPage, Authlayout, Home, Blogs, WriteBlog, MyAccount, EditProfile } from "./components/index.js"
 
 const router = createBrowserRouter(
   [
@@ -60,6 +60,14 @@ const router = createBrowserRouter(
           element: (
             <Authlayout authentication={true}>
               <MyAccount />
+            </Authlayout>
+          )
+        },
+        {
+          path: "/edit-profile",
+          element: (
+            <Authlayout authentication={true}>
+              <EditProfile />
             </Authlayout>
           )
         }

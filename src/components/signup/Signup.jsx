@@ -1,11 +1,12 @@
 import React from 'react'
-import { authService } from '../../services/authService'
+import { authService } from '../../services/authService';
+import { addAuthors } from '../../store/slices/authorsSlice';
 import { useDispatch } from 'react-redux'
-import { login, logout } from '../../store/slices/authSlice';
 import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Input } from "../index"
 import { config } from '../../config/config';
+import { databaseService } from '../../services/databaseService';
 function Signup() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -13,9 +14,20 @@ function Signup() {
     const navigate = useNavigate();
 
     async function createAccount(formData) {
+        const { name, email } = formData;
         authService.signup({ ...formData })
             .then((userData) => {
                 if (userData) {
+                    const { $id, name, email } = userData;
+
+                    databaseService.createAuthor($id, { name, email })
+                        .then((author) => console.log("Author Created"))
+                        .catch((err) => console.log("Author not created: ", err))
+                        .finally(() => {
+                            databaseService.getAuthors()
+                                .then((authors) => dispatch(addAuthors(authors.documents)))
+                                .catch((err) => console.log("Can't Get Authors : ", err))
+                        })
                     navigate("/signin")
                 }
             })

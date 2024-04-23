@@ -1,0 +1,19 @@
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.page-title h4 {
+    width: fit-content;
+    background-color: var(--bg-button);
+    color: var(--text-button);
+    padding: 5px 10px;
+    border-radius: 16px;
+    margin-top: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

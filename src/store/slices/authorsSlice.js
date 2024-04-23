@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    authors: []
+    authors: [],
+    author: {}
 }
 
 const authorsSlice = createSlice({
@@ -12,24 +13,20 @@ const authorsSlice = createSlice({
             state.authors = action.payload;
         },
         addAuthor: (state, action)=> {
-            state.authors.push(action.payload)
+            state.author = action.payload;
         },
-        getAuthors: (state, action)=> {
-            return state.authors;
-        },
-        getAuthor: (state, action)=> {
-            const authorId = action.payload;
-            const requestedAuthor = state.authors.filter((author) => author.$id === authorId)
+        updateAuthor: (state, action) => {
+            const newAuthor = action.payload;
 
-            if(requestedAuthor) {
-                return requestedAuthor[0];
-            } else {
-                return false;
-            }
+            state.author = newAuthor;
+            state.authors = state.authors.map((author) => author.$id === newAuthor.$id ? newAuthor : author)
+        },
+        clearAuthor: (state, action) => {
+            state.author = {}
         }
     }
 })
 
 
-export const {addAuthors, addAuthor, getAuthors, getAuthor} = authorsSlice.actions;
+export const {addAuthors, addAuthor, updateAuthor, clearAuthor} = authorsSlice.actions;
 export default authorsSlice.reducer;

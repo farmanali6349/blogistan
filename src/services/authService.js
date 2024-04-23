@@ -51,20 +51,29 @@ class AuthService {
         }
     }
 
-    async getCurrentSession(sessionId) {
+    async updateName(name) {
         try {
-            return await this.account.getSession(sessionId);
+            return await this.account.updateName(name)
         } catch (error) {
-            console.log("AuthService :: getCurrentSession() :: Error ", error);
+            console.log("AuthService :: updateName() :: Error ", error);
             return false;
         }
     }
 
-    async getSessions() {
+    async updateEmail({email, password}) {
         try {
-            return await this.account.listSessions();
+            return await this.account.updateEmail(email, password)
         } catch (error) {
-            console.log("AuthService :: getCurrentSession() :: Error ", error);
+            console.log("AuthService :: updateEmail() :: Error ", error);
+            return false;
+        }
+    }
+
+    async updatePassword({password, oldPassword}) {
+        try {
+            return await this.account.updatePassword(password, oldPassword)
+        } catch (error) {
+            console.log("AuthService :: updatePassword() :: Error ", error);
             return false;
         }
     }

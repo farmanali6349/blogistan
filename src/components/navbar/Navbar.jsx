@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import {logout } from '../../store/slices/authSlice';
+import { clearAuthor } from '../../store/slices/authorsSlice';
 import {authService} from "../../services/authService"
 import "./Navbar.css"
 
@@ -19,12 +20,12 @@ function Navbar() {
 
     const logoutUser = () => {
         const session = JSON.parse(localStorage.getItem('session'));
-        console.log(session)
         authService.signout(session.$id)
             .then((value) => {
                 if(value) {
                     localStorage.clear();
                     dispatch(logout())
+                    dispatch(clearAuthor())
                     navigate('/signin')
                 }
             }).catch((err) => {

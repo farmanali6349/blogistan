@@ -1,0 +1,64 @@
+.edit-profile .main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+    padding: 48px 0;
+}
+.edit-profile form {
+    width: 100%;
+    background-color: var(--bg-color02);
+    padding: 48px 32px;
+    border-radius: 16px;
+    border: 1px solid #434343;
+}
+
+form input:focus {
+    border: 2px solid var(--bg-button);
+}
+
+.edit-profile form .textarea textarea:focus{
+    border: 2px solid var(--bg-button);
+}
+
+.edit-profile .name-email {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.edit-profile form .textarea {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.edit-profile form .textarea label {
+    width: 100%;
+}
+.edit-profile form .textarea textarea {
+    width: 100%;
+    background-color: var(--bg-color02);
+    outline: none;
+    border-radius: 8px;
+    border: 1px solid #636363;
+    resize: vertical;
+    padding: 16px 24px;
+    color: #f1f1f1;
+    font-size: 18px;
+}
+
+.edit-profile form input[type="submit"] {
+    width: fit-content;
+    align-self: flex-end;
+}
+
+.edit-profile form input[type="submit"].disabled {
+    background-color: #636363;
+    cursor: not-allowed;
+}

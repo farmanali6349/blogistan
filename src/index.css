@@ -67,13 +67,14 @@ a {
 
 .page-title h2 {
     text-transform: uppercase;
-    font-size: 32px;
+    font-size: 48px;
     letter-spacing: 1px;
     word-spacing: 5px;
 }
 
 .page-title p {
     color: var(--text-color02);
+    font-size: 18px;
 }
 .main-container {
     width: 100%;

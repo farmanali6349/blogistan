@@ -1,0 +1,40 @@
+.my-account .author-avatar {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    border-radius: 200px;
+    margin-bottom: 16px;
+}
+.my-account .title {
+    font-size: 32px;
+    text-transform: capitalize;
+    width: 100%;
+    text-align: center;
+}
+.social-icons {
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.social-icon img {
+    cursor: pointer;
+}
+
+.link {
+    color: var(--bg-button);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.my-account .page-title .main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

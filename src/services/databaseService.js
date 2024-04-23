@@ -1,5 +1,5 @@
 import { Client, ID, Databases, Query } from "appwrite";
-import config from "../config/config";
+import {config} from "../config/config";
 
 class DatabaseService {
     client = new Client();
@@ -16,7 +16,7 @@ class DatabaseService {
     // 1.0 DATABASE BLOGS COLLECTION
 
     // 1.1 Create Blog
-    async createBlog({ title, slug, content, status, featuredImageSource, status, author }) {
+    async createBlog({ title, slug, content, status, featuredImageSource, author }) {
         const publishDate = new Date();
         const updateDate = null;
         const comments = null;
@@ -27,7 +27,7 @@ class DatabaseService {
         const documentId = ID.unique();
 
         try {
-            return await this.databases.createDocument(databaseId, blogCollectionId, documentId, { title, slug, content, status, featuredImageSource, likes, dislikes, status, author, publishDate, updateDate, comments })
+            return await this.databases.createDocument(databaseId, blogCollectionId, documentId, { title, slug, content, status, featuredImageSource, likes, dislikes, author, publishDate, updateDate, comments })
         } catch (error) {
             console.log("DatabaseService :: createBlog() :: Error ", error);
             return false;
@@ -35,7 +35,7 @@ class DatabaseService {
     }
 
     // 1.2 Update Blog
-    async updateBlog($id, { title, slug, content, status, featuredImageSource, likes, dislikes, status, author, publishDate, comments }) {
+    async updateBlog($id, { title, slug, content, status, featuredImageSource, likes, dislikes, author, publishDate, comments }) {
 
         const updateDate = new Date();
 
@@ -44,7 +44,7 @@ class DatabaseService {
         const documentId = $id;
 
         try {
-            return await this.databases.updateDocument(databaseId, blogCollectionId, documentId, { title, slug, content, status, featuredImageSource, likes, dislikes, status, author, publishDate, updateDate, comments })
+            return await this.databases.updateDocument(databaseId, blogCollectionId, documentId, { title, slug, content, status, featuredImageSource, likes, dislikes, author, publishDate, updateDate, comments })
         } catch (error) {
             console.log("DatabaseService :: updateBlog() :: Error ", error);
             return false;
@@ -98,13 +98,13 @@ class DatabaseService {
     // 2.0 DATABASE AUTHORS COLLECTION
 
     // 2.1 Create Author
-    async createAuthor({ name, email, bio, contact, facebook, instagram, linkedIn, medium, twitter, blogs, categories }) {
+    async createAuthor($id, {name, email, bio, facebook, instagram, linkedIn, medium, twitter, blogs, categories }) {
         const databaseId = config.databaseId;
         const authorsCollectionId = config.authorsCollectionId;
-        const documentId = ID.unique();
+        const documentId = $id;
 
         try {
-            return await this.databases.createDocument(databaseId, authorsCollectionId, databaseId, { name, email, bio, contact, facebook, instagram, linkedIn, medium, twitter, blogs, categories })
+            return await this.databases.createDocument(databaseId, authorsCollectionId, documentId, { name, email, bio, facebook, instagram, linkedIn, medium, twitter, blogs, categories })
         } catch (error) {
             console.log("DatabaseService :: createAuthor() :: Error ", error);
             return false;
@@ -112,13 +112,13 @@ class DatabaseService {
     }
 
     // 2.2 Update Author
-    async updateAuthor({ $id, name, email, bio, contact, facebook, instagram, linkedIn, medium, twitter, blogs, categories }) {
+    async updateAuthor({ $id, name, email, bio, facebook, instagram, linkedin, medium, twitter, blogs, categories }) {
         const databaseId = config.databaseId;
         const authorsCollectionId = config.authorsCollectionId;
         const documentId = $id;
 
         try {
-            return await this.databases.updateDocument(databaseId, authorsCollectionId, databaseId, { name, email, bio, contact, facebook, instagram, linkedIn, medium, twitter, blogs, categories })
+            return await this.databases.updateDocument(databaseId, authorsCollectionId, documentId, { name, email, bio, facebook, instagram, linkedin, medium, twitter, blogs, categories })
         } catch (error) {
             console.log("DatabaseService :: updateAuthor() :: Error ", error);
             return false;
@@ -132,7 +132,7 @@ class DatabaseService {
         const documentId = $id;
 
         try {
-            return await this.databases.deleteDocument(databaseId, authorsCollectionId, databaseId);
+            return await this.databases.deleteDocument(databaseId, authorsCollectionId, documentId);
         } catch (error) {
             console.log("DatabaseService :: deleteAuthor() :: Error ", error);
             return false;
@@ -159,7 +159,7 @@ class DatabaseService {
         const authorsCollectionId = config.authorsCollectionId;
 
         try {
-            return await this.databases.getDocument(databaseId, authorsCollectionId);
+            return await this.databases.listDocuments(databaseId, authorsCollectionId);
         } catch (error) {
             console.log("DatabaseService :: getAuthors() :: Error ", error);
             return false;

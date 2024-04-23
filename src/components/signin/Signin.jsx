@@ -5,17 +5,44 @@ import { login } from '../../store/slices/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { Input } from "../index"
 import { useForm } from 'react-hook-form';
+import { addAuthor, addAuthors } from '../../store/slices/authorsSlice';
+import { databaseService } from '../../services/databaseService';
 function Signin() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function signinUser(formData) {
         authService.signin({ ...formData })
             .then((session) => {
                 if (session) {
-                    dispatch(login(session))
                     localStorage.setItem('session', JSON.stringify(session))
+
+                    authService.getCurrentUser()
+                        .then((userData) => {
+                            if (userData) {
+                                dispatch(login(userData))
+
+                                if (userData) {
+                                    databaseService.getAuthors()
+                                        .then((authors) => {
+                                            dispatch(addAuthors(authors.documents))
+                                            const author = authors.documents.filter((author) => author.$id === userData.$id)[0]
+
+                                            if (author) {
+                                                dispatch(addAuthor(author))
+                                            }
+                                        })
+                                        .catch((err) => console.log("Can't Get Authors : ", err))
+
+                                }
+                            }
+                        })
+                        .catch((err) => {
+                            console.log("No User Data Found");
+                            dispatch(logout())
+                        })
                 }
             }).catch((err) => console.log("Singin.jsx :: ERROR :: ", err))
     }
