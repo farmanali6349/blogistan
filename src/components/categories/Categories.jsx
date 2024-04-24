@@ -1,10 +1,11 @@
 import React from 'react'
-import { CategoryInput } from '../index'
+import { CategoryInput, CreateCategory } from '../index'
 
 function Categories({}) {
     return (
         <>
-            <CategoryInput label="Undefined"/>
+            <CategoryInput label="Undefined" value="Undefined" $id="This is $id"/>
+            <CreateCategory />
         </>
     )
 }

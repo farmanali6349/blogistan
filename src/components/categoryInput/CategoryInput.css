@@ -1,11 +1,17 @@
 .category-input {
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
     gap: 10px;
+    position: relative;
 }
 
-.category-input input[type="text"] {
-    border: none;
-    outline: none;
+.category-input input {
+    width: 16px;
+}
+
+.category-input label{
     font-size: 18px;
     font-family: 'Archivo';
     background: transparent;

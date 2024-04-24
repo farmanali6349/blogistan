@@ -17,5 +17,6 @@ import EditProfile from "./pages/editProfile/EditProfile";
 import Categories from "./categories/Categories";
 import BlogForm from "./blogForm/BlogForm";
 import CategoryInput from "./categoryInput/CategoryInput";
+import CreateCategory from "./categoryInput/CreateCategory";
 
-export {Navbar, Signin, Signup, SigninPage, SignupPage, Authlayout, Header, Logo, Container, Input, PageTitle, Home, Blogs, WriteBlog, MyAccount, EditProfile, Categories, BlogForm, CategoryInput }
+export {Navbar, Signin, Signup, SigninPage, SignupPage, Authlayout, Header, Logo, Container, Input, PageTitle, Home, Blogs, WriteBlog, MyAccount, EditProfile, Categories, BlogForm, CategoryInput, CreateCategory }
