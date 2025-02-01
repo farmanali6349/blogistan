@@ -14,7 +14,7 @@ import CreateCategories from "./form_components/CreateCategories";
 import Categories from "./Categories";
 import Popup from "./Popup";
 import Blog from "./Blog";
-import Authlayout from "./AuthLayout";
+import Authlayout from "./Authlayout";
 import Footer from "./Footer";
 import Logo from "./header/Logo";
 
