@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store.js";
-import Authlayout from "./components/AuthLayout.jsx";
+import AuthLayout from "./components/AuthLayout.jsx";
 
 import {
   Home,
@@ -33,25 +33,25 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: (
-          <Authlayout authentication={false}>
+          <AuthLayout authentication={false}>
             <Login />
-          </Authlayout>
+          </AuthLayout>
         ),
       },
       {
         path: "/signup",
         element: (
-          <Authlayout authentication={false}>
+          <AuthLayout authentication={false}>
             <Signup />
-          </Authlayout>
+          </AuthLayout>
         ),
       },
       {
         path: "/create-blog",
         element: (
-          <Authlayout authentication={true}>
+          <AuthLayout authentication={true}>
             <CreateBlog />
-          </Authlayout>
+          </AuthLayout>
         ),
       },
       {
@@ -69,33 +69,33 @@ const router = createBrowserRouter([
       {
         path: "/edit-account",
         element: (
-          <Authlayout authentication={true}>
+          <AuthLayout authentication={true}>
             <EditAccount />
-          </Authlayout>
+          </AuthLayout>
         ),
       },
       {
         path: "/account",
         element: (
-          <Authlayout authentication={true}>
+          <AuthLayout authentication={true}>
             <MyAccount />
-          </Authlayout>
+          </AuthLayout>
         ),
       },
       {
         path: "/create-categories",
         element: (
-          <Authlayout authentication={true}>
+          <AuthLayout authentication={true}>
             <CreateCategoriesPage />
-          </Authlayout>
+          </AuthLayout>
         ),
       },
       {
         path: "/edit-blog/:blogId",
         element: (
-          <Authlayout authentication={true}>
+          <AuthLayout authentication={true}>
             <EditBlog />
-          </Authlayout>
+          </AuthLayout>
         ),
       },
     ],
