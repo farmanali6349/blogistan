@@ -11,9 +11,6 @@ const config = {
   appwriteCategoriesCollectionId: String(
     import.meta.env.VITE_APPWRITE_CATEGORIES_COLLECTION_ID
   ),
-  appwriteSubCategoriesCollectionId: String(
-    import.meta.env.VITE_APPWRITE_SUB_CATEGORIES_COLLECTION_ID
-  ),
   appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
 };
 

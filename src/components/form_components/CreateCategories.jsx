@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Input, Select } from "../index";
+import { Input } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import databaseService from "../../services/database";
 import { setCurrentAuthor } from "../../store/features/authorsSlice";
 function CreateCategories() {
   const [inputValue, setInputValue] = useState("");
-  const [parent, setParent] = useState("");
   const user = useSelector((state) => state.AuthReducer.userData);
   const currentAuthor = useSelector(
     (state) => state.AuthorsReducer.currentAuthor

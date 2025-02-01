@@ -9,7 +9,6 @@ class DatabaseService {
   blogsCollectionId = config.appwriteBlogsCollectionId;
   authorsCollectionId = config.appwriteAuthorsCollectionId;
   categoriesCollectionId = config.appwriteCategoriesCollectionId;
-  subCategoriesCollectionId = config.appwriteSubCategoriesCollectionId;
   bucketId = config.appwriteBucketId;
 
   constructor() {
