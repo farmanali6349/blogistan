@@ -58,10 +58,8 @@ function LoginForm() {
 
         const author = await databaseService.getAuthor({ $id: user.$id });
         if (author) {
-          console.log("Author Found");
           dispatch(setCurrentAuthor(author));
         } else {
-          console.log("No author found, creating a new author");
           // New Account: Make him author
           const newAuthor = {
             $id: user.$id,
@@ -80,22 +78,17 @@ function LoginForm() {
           const createdAuthor = await databaseService.createAuthor(newAuthor);
 
           if (createdAuthor) {
-            console.log("created a new author");
             const category = await databaseService.createCategory({
               name: "uncategorized",
               author: createdAuthor.$id,
               blogs: [],
             });
 
-            console.log("category created");
-
-            console.log("Getting updated author");
             const authorWithCategory = await databaseService.getAuthor({
               $id: createdAuthor.$id,
             });
 
             if (authorWithCategory) {
-              console.log("Got updated author, now adding him to store");
               dispatch(setCurrentAuthor(authorWithCategory));
             }
           }
