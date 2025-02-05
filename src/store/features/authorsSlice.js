@@ -11,8 +11,11 @@ const authorSlice = createSlice({
     setCurrentAuthor: (state, action) => {
       state.currentAuthor = action.payload;
     },
+    unSetCurrentAuthor: (state, action) => {
+      state.currentAuthor = null;
+    },
   },
 });
 
-export const { setCurrentAuthor } = authorSlice.actions;
+export const { setCurrentAuthor, unSetCurrentAuthor } = authorSlice.actions;
 export default authorSlice.reducer;

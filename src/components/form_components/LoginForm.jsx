@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Input, Loading } from "../index";
 import { useNavigate } from "react-router";
 import authService from "../../services/auth";
+import databaseService from "../../services/database";
 import { useDispatch, useSelector } from "react-redux";
 import { login as localLogin } from "../../store/features/authSlice";
 import { useReducer } from "react";
@@ -32,8 +33,6 @@ function LoginForm() {
     message: "Loading",
   });
 
-  const authors = useSelector((state) => state.AuthorsReducer.authors);
-
   const {
     register,
     handleSubmit,
@@ -41,7 +40,7 @@ function LoginForm() {
   } = useForm();
 
   const navigate = useNavigate();
-  const dipatch = useDispatch();
+  const dispatch = useDispatch();
 
   async function loginUser({ email, password }) {
     // Loading started
@@ -52,17 +51,54 @@ function LoginForm() {
       dispatchLoading({ type: "CONTINUE", message: "You are logged in ✔️" });
       dispatchLoading({ type: "END", message: "" });
 
-      // cofiguring the local login
-      dipatch(localLogin(session));
+      const user = await authService.getCurrentUser();
+      if (user) {
+        // cofiguring the local login
+        dispatch(localLogin(user));
 
-      // Setting Up Current Author
-      if (authors && authors.length > 0) {
-        const userId = session.userId;
+        const author = await databaseService.getAuthor({ $id: user.$id });
+        if (author) {
+          console.log("Author Found");
+          dispatch(setCurrentAuthor(author));
+        } else {
+          console.log("No author found, creating a new author");
+          // New Account: Make him author
+          const newAuthor = {
+            $id: user.$id,
+            name: user.name,
+            email: user.email,
+            bio: "",
+            facebook: "",
+            instagram: "",
+            linkedin: "",
+            x: "",
+            medium: "",
+            blogs: [],
+            categories: [],
+          };
 
-        const currAuthor = authors.filter((author) => author.$id === userId)[0];
+          const createdAuthor = await databaseService.createAuthor(newAuthor);
 
-        if (currAuthor) {
-          dipatch(setCurrentAuthor(currAuthor));
+          if (createdAuthor) {
+            console.log("created a new author");
+            const category = await databaseService.createCategory({
+              name: "uncategorized",
+              author: createdAuthor.$id,
+              blogs: [],
+            });
+
+            console.log("category created");
+
+            console.log("Getting updated author");
+            const authorWithCategory = await databaseService.getAuthor({
+              $id: createdAuthor.$id,
+            });
+
+            if (authorWithCategory) {
+              console.log("Got updated author, now adding him to store");
+              dispatch(setCurrentAuthor(authorWithCategory));
+            }
+          }
         }
       }
 

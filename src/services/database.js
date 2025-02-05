@@ -34,14 +34,15 @@ class DatabaseService {
     linkedin,
     x,
     medium,
-    blogs = [],
-    categories = [],
+    blogs,
+    categories,
   }) {
+    const documentId = $id;
     try {
       const author = this.database.createDocument(
         this.databaseId,
         this.authorsCollectionId,
-        $id,
+        documentId,
         {
           name,
           email,

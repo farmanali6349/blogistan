@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import authService from "../../services/auth";
 import { logout as localLogout } from "../../store/features/authSlice";
+import { unSetCurrentAuthor } from "../../store/features/authorsSlice";
 import { useEffect, useState } from "react";
 import { navIcon } from "../../assets/images";
 import databaseService from "../../services/database";
@@ -34,6 +35,7 @@ function Navbar({ categories }) {
 
     if (deletedSession) {
       dispatch(localLogout());
+      dispatch(unSetCurrentAuthor());
       navigateToLink("/login");
     }
   }

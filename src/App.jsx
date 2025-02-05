@@ -1,5 +1,5 @@
 import "./App.css";
-import { Outlet } from "react-router";
+import { data, Outlet } from "react-router";
 import { Navbar, Footer } from "./components";
 import { useEffect, useState } from "react";
 import authService from "./services/auth";
@@ -9,11 +9,19 @@ import databaseService from "./services/database";
 import { setCurrentAuthor } from "./store/features/authorsSlice";
 import { images } from "./assets/images";
 import useOnlineStatus from "./hooks/useOnlineStatus";
+
 function App() {
+  // Checking Connectivity
   const isOnline = useOnlineStatus();
+
+  // Dispatch to update store
   const dispatch = useDispatch();
-  const [scrollValue, setScrollValue] = useState(0);
+
+  // Categories
   const [categories, setCategories] = useState([]);
+
+  // Something Header Relavant
+  const [scrollValue, setScrollValue] = useState(0);
   window.addEventListener("scroll", () => {
     setScrollValue(window.scrollY);
   });
@@ -37,24 +45,21 @@ function App() {
   }
 
   useEffect(() => {
-    if (!userData) {
-      updateAuthStatus();
-    }
-    loadCategories();
+    updateAuthStatus();
   }, []);
 
-  useEffect(() => {
-    if (userData && currAuthor) {
-      dispatch(setCurrentAuthor(currAuthor));
-    }
-  }, [userData, currAuthor]);
-
+  // Handling Categories
   async function loadCategories() {
     const reponse = await databaseService.getCategories();
     const cats = [...reponse.documents];
     const categoriesWithBlogs = cats?.filter((cat) => cat.blogs.length > 0);
     setCategories(categoriesWithBlogs);
   }
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
   return (
     <>
       {!isOnline && (

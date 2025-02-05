@@ -48,49 +48,10 @@ function SignupForm() {
     if (account) {
       dispatchLoading({
         type: "CONTINUE",
-        message: "Account ✔️, Creating Your Author Account",
+        message: "Account Created ✔️",
       });
 
-      // Making current user an author
-      const {
-        $id,
-        name,
-        email,
-        bio = "",
-        facebook = "",
-        instagram = "",
-        linkedin = "",
-        x = "",
-        medium = "",
-        blogs = [],
-        categories = ["uncategorized"],
-      } = account;
-
-      const author = await databaseService.createAuthor({
-        $id,
-        name,
-        email,
-        bio,
-        facebook,
-        instagram,
-        linkedin,
-        x,
-        medium,
-        blogs,
-        categories,
-      });
-
-      if (author) {
-        dispatchLoading({
-          type: "CONTINUE",
-          message: "Account ✔️, DONE 🎉",
-        });
-      }
-
-      dispatchLoading({
-        type: "END",
-        message: "Account ✔️, DONE 🎉",
-      });
+      dispatchLoading({ type: "END", message: "Loading..." });
       navigate("/login");
     }
   }
@@ -107,7 +68,7 @@ function SignupForm() {
           <Input
             type="text"
             label={"Enter Your Name: "}
-            placeholder={"Farman Ji"}
+            placeholder={"Muhammad Ali"}
             {...register("name", {
               required: "Name is required",
             })}

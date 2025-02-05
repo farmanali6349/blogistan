@@ -48,7 +48,7 @@ function SingleCategory({ category, updateAuthorInfo }) {
         onChange={(e) => setInput(e.target.value)}
         disabled={!isEditing}
       />
-      {category?.$id !== "uncategorized" && (
+      {category?.name !== "uncategorized" && (
         <div className="buttons">
           <button className="del" onClick={() => deleteCategory()}>
             <img
