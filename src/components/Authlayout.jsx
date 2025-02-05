@@ -7,17 +7,19 @@ import { Popup, Loading } from "./index";
 
 function Authlayout({ children, authentication = true }) {
   const [loader, setLoader] = useState(true);
+  const userData = useSelector((state) => state.AuthReducer.userData);
   const authStatus = useSelector((state) => state.AuthReducer.status);
   const navigate = useNavigate();
   useEffect(() => {
-    if (authentication && authStatus !== authentication) {
-      navigate("/login");
-    } else if (!authentication && authStatus !== authentication) {
-      navigate("/");
+    if (authStatus !== null) {
+      if (authentication && !authStatus) {
+        navigate("/login");
+      } else if (!authentication && authStatus) {
+        navigate("/");
+      }
+      setLoader(false);
     }
-
-    setLoader(false);
-  }, [authentication, authStatus, navigate]);
+  }, [authentication, authStatus, userData, navigate]);
 
   return loader ? (
     <Popup>
