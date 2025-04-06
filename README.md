@@ -1,113 +1,162 @@
-# Blogistan
+# 📝 Blogistan
 
-Blogistan is a full-featured blog application that provides user authentication, blog creation, and category management. It is designed for authors to easily manage their content and for readers to seamlessly explore blogs by authors and categories. This repository contains the complete source code for the Blogistan web application.
+### 🔗 Live Link
 
-## Table of Contents
+- [🌐 Live Site](https://blogistan.netlify.app/)
+- [📂 GitHub Repo](https://github.com/farmanali6349/blogistan)
 
-- [Overview](#overview)
-- [Features](#features)
-- [Pages](#pages)
-- [Data Model](#data-model)
-- [Technology Stack](#technology-stack)
-- [Setup and Installation](#setup-and-installation)
-- [Usage](#usage)
-- [Deployment](#deployment)
-- [License](#license)
-- [Contributing](#contributing)
-- [Contact](#contact)
+## 📸 Screenshot
 
-## Overview
+![Blogistan Screenshot](blogistan.png)
 
-Blogistan is built as a comprehensive solution for managing blog content. The application supports user authentication, blog creation and categorization, and offers a responsive user interface. It is structured to allow authors to not only write and manage blog posts but also to organize content via categories. Readers can explore content through dedicated pages for authors and categories.
+## 🗓️ Published On
 
-## Features
+**February 6, 2025**
 
-- **User Authentication**:
+---
 
-  - **Login**
-  - **Signup**
-  - **Logout**
+## 📖 Overview
 
-- **Blog Management**:
+**Blogistan** is a full-featured blog platform designed to empower authors and engage readers. With built-in **user authentication**, **blog creation**, **category management**, and a **responsive design**, it offers a seamless writing and reading experience.
 
-  - Create, update, and delete blog posts
-  - Each blog post includes:
-    - **Title** (string)
-    - **Content** (string)
-    - **Author** (relationship)
-    - **Featured Image** (string)
-    - **Categories** (relationship)
-    - **Featured Image Preview**
+Authors can manage blogs and categories, while readers can explore content by category or author. Blogistan is perfect for writers looking to build their presence and for readers searching for high-quality, organized content.
 
-- **Category Management**:
+---
 
-  - Create, update, and delete categories (except the default "uncategorized" category which cannot be edited or deleted)
-  - Each category includes:
-    - **Name** (string)
-    - Associated blogs (relationship)
-    - **Author** (relationship)
+## ✨ Features
 
-- **Author Management**:
+### 🔐 User Authentication
 
-  - Each author profile includes:
-    - **Name** (string)
-    - **Email** (string)
-    - **Bio** (string)
-    - Social media links (Facebook, Instagram, LinkedIn, Medium, and an additional field `x`)
-    - Blogs and categories they manage (relationships)
+- **Login**
+- **Signup**
+- **Logout**
 
-- **Responsive Design**:  
-  The web application is built to be responsive, ensuring a good user experience on both desktop and mobile devices.
+### 📝 Blog Management
 
-- **Edit Account Page**:  
-  Authors can update their profile details and change their password.
+- Create, update, delete blog posts
+- Each blog includes:
+  - Title
+  - Rich content
+  - Featured image with preview
+  - Author info
+  - Category tags
 
-## Pages
+### 🗂️ Category Management
 
-- **Home Page**:  
-  Displays the latest blogs at the top.
+- Create, update, delete categories
+- Default category "Uncategorized" is protected
+- Each category includes:
+  - Name
+  - Linked blogs
+  - Category creator (author)
 
-- **Author Page**:  
-  Allows users to explore an author's blogs and related categories.
+### 👤 Author Management
 
-- **Category Page**:  
-  Displays blogs that belong to a selected category.
+- Author profiles include:
+  - Name
+  - Email
+  - Bio
+  - Social media links (Facebook, Instagram, LinkedIn, Medium, X)
+  - List of authored blogs and created categories
 
-- **Edit Account Page**:  
-  Enables authors to update their profile information and password.
+### 🖥️ Responsive Design
 
-## Data Model
+- Fully responsive UI
+- Works smoothly on desktop, tablet, and mobile devices
+
+### ⚙️ Edit Account Page
+
+- Update personal details
+- Change password securely
+
+---
+
+## 🗂️ Pages
+
+- **Home Page** – Shows the latest blog posts
+- **Author Page** – Lists all blogs and categories created by a specific author
+- **Category Page** – Displays blogs from a selected category
+- **Edit Account Page** – Lets users update their profile and password
+
+---
+
+## 🧩 Data Model
 
 ### Blog
 
-- **title**: `string`
-- **content**: `string`
-- **author**: Relationship with Author
-- **featuredImage**: `string`
-- **categories**: Relationship with Categories
-- **featuredImagePreview**
+```ts
+{
+  title: string;
+  content: string;
+  featuredImage: string;
+  author: Author;
+  categories: Category[];
+}
+```
 
-### Category
+### Categories
 
-- **name**: `string`
-- **blogs**: Relationship with Blogs
-- **author**: Relationship with Author
+```ts
+{
+  name: string;
+  blogs: Blog[];
+  author: Author;
+}
+```
 
 ### Author
 
-- **name**: `string`
-- **email**: `string`
-- **bio**: `string`
-- **facebook**: `string`
-- **instagram**: `string`
-- **linkedin**: `string`
-- **x**: `string`
-- **medium**: `string`
-- **blogs**: Relationship with Blogs
-- **categories**: Relationship with Categories
+```ts
+{
+  name: string;
+  email: string;
+  bio: string;
+  facebook: string;
+  instagram: string;
+  linkedin: string;
+  x: string;
+  medium: string;
+  blogs: Blog[];
+  categories: Category[];
+}
+```
 
-## Technology Stack
+### ⚙️ Tech Stack
 
-- **Frontend**: (e.g., React, JS, etc. — specify as applicable)
-- **Backend**: (e.g., Appwrite. — Database as a service)
-- **Deployment**: [Vercel](https://vercel.com/)
+- Frontend: React.js, Tailwind CSS
+
+- Backend: Appwrite (Database, Auth, Storage)
+
+- Deployment: Netlify
+
+# 🚀 Setup & Installation
+
+Clone the repository
+git clone `https://github.com/farmanali6349/blogistan`
+
+Navigate into the project directory
+`cd blogistan`
+
+Install dependencies
+`npm install`
+
+Configure Appwrite backend (Use Appwrite console to set up project, collections, and environment variables)
+
+Start development server
+`npm run dev`
+
+### 📦 Deployment
+
+The project is deployed on [Netlify](https://blogistan.netlify.app/). You can deploy your own version by connecting the GitHub repo and setting environment variables for Appwrite.
+
+### 🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork the repo, open issues, and submit pull requests.
+
+### 📬 Contact
+
+- Name: **Farman Ali**
+- Portfolio: [farmanali.fun](https://farmanali.fun)
+- GitHub: [farmanali6349](https://github.com/farmanali6349/)
+- **Linkedin**: [farmanali6349](https://www.linkedin.com/in/farmanali6349/)
